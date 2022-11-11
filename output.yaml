@@ -1,0 +1,48 @@
+additional_properties: {}
+apiVersion: '2021-09-01'
+extended_location: null
+identity: null
+location: eastasia
+name: aci-file-write-mount-test
+properties:
+  containers:
+  - name: aci-file-write-mount-test
+    properties:
+      environmentVariables: []
+      image: filelisttest.azurecr.io/az-write-txt-demo:latest
+      ports:
+      - port: 80
+        protocol: TCP
+      - port: 5000
+        protocol: TCP
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+      volumeMounts:
+      - mountPath: /mnt/azfile
+        name: azurefile
+  imageRegistryCredentials:
+  - server: filelisttest.azurecr.io
+    username: filelisttest
+  initContainers: []
+  ipAddress:
+    dnsNameLabel: az-file-write-mnt-demo
+    fqdn: az-file-write-mnt-demo.eastasia.azurecontainer.io
+    ip: 20.239.30.59
+    ports:
+    - port: 80
+      protocol: TCP
+    - port: 5000
+      protocol: TCP
+    type: Public
+  osType: Linux
+  restartPolicy: Always
+  sku: Standard
+  volumes:
+  - azureFile:
+      shareName: app-data
+      storageAccountName: filelisttest
+    name: azurefile
+tags: {}
+type: Microsoft.ContainerInstance/containerGroups

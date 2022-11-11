@@ -1,0 +1,43 @@
+additional_properties: {}
+apiVersion: '2021-10-01'
+name: fyp-aci-test-one
+properties:
+  containers:
+  - name: fyp-aci-test-one
+    properties:
+      image: filelisttest.azurecr.io/fyp-container-one:latest
+      ports:
+        - port: 80
+          protocol: TCP
+        - port: 5000
+          protocol: TCP
+      resources:
+        requests:
+          cpu: 2.0
+          memoryInGB: 2.0
+          gpu:
+            count: 1
+            sku: K80
+      volumeMounts:
+        - mountPath: /mnt/azfile/
+          name: azurefile
+  osType: Linux
+  imageRegistryCredentials:
+    - server: filelisttest.azurecr.io
+      username: filelisttest
+      password: GPnBpFbIPwxBpehUQg5YJPlDBcm/ctYf
+  restartPolicy: OnFailure
+  ipAddress:
+    type: Public
+    ports:
+      - port: 80
+        protocol: TCP
+      - port: 5000
+        protocol: TCP
+    dnsNameLabel: fyp-aci-test-one
+  volumes:
+    - name: azurefile
+      azureFile:
+        sharename: app-data
+        storageAccountName: filelisttest
+        storageAccountKey: cr6aB8V4l1Ogs8XOu36BkVkU1oPhWzDzhbenAuBz71XO/8LFfoUItUFGHA5rfLUkGcHVnpJOrNtP+AStLsXYbg==
