@@ -15,9 +15,9 @@ properties:
         requests:
           cpu: 2.0
           memoryInGB: 2.0
-          gpu:
-            count: 1
-            sku: K80
+#          gpu:
+#            count: 1
+#            sku: K80
       volumeMounts:
         - mountPath: /mnt/azfile/
           name: azurefile
