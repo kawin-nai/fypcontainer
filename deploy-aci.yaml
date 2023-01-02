@@ -5,7 +5,7 @@ properties:
   containers:
   - name: fyp-aci-test-one
     properties:
-      image: filelisttest.azurecr.io/fyp-container-one:latest
+      image: filelisttest.azurecr.io/fyp-aci-test-one:latest
       ports:
         - port: 80
           protocol: TCP
